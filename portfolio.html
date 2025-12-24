@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varsha Shree A - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #64748b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --accent: #8b5cf6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text .title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .hero-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .education {
+            background: var(--light);
+        }
+
+        .education-grid {
+            display: grid;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary);
+        }
+
+        .education-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .education-card .institution {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .year {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .score {
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: var(--secondary);
+            border-bottom: 1px solid var(--light);
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .projects {
+            background: var(--light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card .project-content {
+            padding: 2rem;
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card .role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card .tools {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .description {
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            border-top: 4px solid var(--accent);
+        }
+
+        .achievement-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-card .prize {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-card .date {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .certifications {
+            background: var(--light);
+        }
+
+        .cert-list {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .cert-list ul {
+            list-style: none;
+        }
+
+        .cert-list li {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light);
+            color: var(--dark);
+        }
+
+        .cert-list li:last-child {
+            border-bottom: none;
+        }
+
+        .internship-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .internship-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .internship-details {
+            display: grid;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .internship-details div {
+            color: var(--secondary);
+        }
+
+        .internship-details strong {
+            color: var(--dark);
+        }
+
+        .contact {
+            background: var(--light);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .contact-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Varsha Shree</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>VARSHA SHREE A</h1>
+                    <p class="title">B.Tech - Artificial Intelligence and Data Science</p>
+                    <p>AI & Data Science student with a strong passion for app development, front-end design, and Python programming. Proficient in C and currently expanding skills in Python for data-driven and AI-powered solutions. Dedicated to continuous learning and creating user-friendly, sustainable digital innovations.</p>
+                </div>
+                <div class="hero-info">
+                    <div class="info-item">
+                        <span>📧</span>
+                        <span>varshashreeanandan@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span>📱</span>
+                        <span>8778853265</span>
+                    </div>
+                    <div class="info-item">
+                        <span>🎓</span>
+                        <span>Bannari Amman Institute of Technology</span>
+                    </div>
+                    <div class="info-item">
+                        <span>📊</span>
+                        <span>CGPA: 8.4</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>B.Tech - Artificial Intelligence and Data Science</h3>
+                    <p class="institution">Bannari Amman Institute of Technology</p>
+                    <p class="year">2024 - 2028</p>
+                    <p class="score">CGPA: 8.4</p>
+                </div>
+                <div class="education-card">
+                    <h3>Higher Secondary (12th)</h3>
+                    <p class="institution">BVB Matric Higher Secondary School</p>
+                    <p class="year">2024</p>
+                    <p class="score">Percentage: 88%</p>
+                </div>
+                <div class="education-card">
+                    <h3>Secondary (10th)</h3>
+                    <p class="institution">SSM Matric Higher Secondary School</p>
+                    <p class="year">2022</p>
+                    <p class="score">Percentage: 94%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>C Programming</li>
+                        <li>Python (Beginner)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Design & Development</h3>
+                    <ul class="skill-list">
+                        <li>Figma</li>
+                        <li>Flutter</li>
+                        <li>Front-end Development</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <ul class="skill-list">
+                        <li>English</li>
+                        <li>Tamil</li>
+                        <li>Hindi (Read)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Environmental Impact Barcode Scanner</h3>
+                        <p class="role">Role: UI & Front-end Developer</p>
+                        <p class="tools">Tools: Flutter, Visual Studio, Firebase</p>
+                        <p class="description">A mobile application that scans product barcodes to check their environmental impact and suggests eco-friendly alternatives. Focused on delivering a user-friendly interface and real-time database integration for accurate sustainability information.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>eSkill2Earn - Skill Learning and Earning Platform</h3>
+                        <p class="role">Role: Mobile App Developer & AI Logic Integrator</p>
+                        <p class="tools">Tools: Flutter, Dart, Firebase, Python (Pandas, NumPy), REST APIs</p>
+                        <p class="description">A mobile application designed to help users learn job-oriented skills and earn through skill-based tasks. Focused on building an intuitive user interface, implementing progress tracking, and integrating personalized skill recommendations to improve learner engagement and completion rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <h2 class="section-title">Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <h3>BIT HACK'25 Special Mention</h3>
+                    <p class="prize">Won ₹1000 cash prize</p>
+                    <p class="date">March 8, 2025</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Hack for India Finalist</h3>
+                    <p class="prize">Shortlisted for final phase</p>
+                    <p class="date">March 3, 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-list">
+                <ul>
+                    <li>Oracle Cloud Infrastructure</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="internship" class="internship">
+        <div class="container">
+            <h2 class="section-title">Internship</h2>
+            <div class="internship-card">
+                <h3>TechnoHacks Solutions Pvt. Ltd.</h3>
+                <div class="internship-details">
+                    <div><strong>Mode:</strong> Offline</div>
+                    <div><strong>Duration:</strong> July 2025 - 4 weeks</div>
+                    <div><strong>Focus:</strong> Learned about app development using Flutter</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Connect With Me</h2>
+            <div class="contact-content">
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/varsha-shree-9b6151350/" class="contact-link" target="_blank">
+                        <span>🔗</span>
+                        <span>LinkedIn Profile</span>
+                    </a>
+                    <a href="https://github.com/Varshashree06" class="contact-link" target="_blank">
+                        <span>💻</span>
+                        <span>GitHub</span>
+                    </a>
+        
+                    <a href="https://leetcode.com/u/39XS8lXk72/" class="contact-link" target="_blank">
+                        <span>📝</span>
+                        <span>LeetCode</span>
+                    </a>
+                    <a href="mailto:varshashreeanandan@gmail.com" class="contact-link">
+                        <span>📧</span>
+                        <span>Email Me</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Varsha Shree A. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
